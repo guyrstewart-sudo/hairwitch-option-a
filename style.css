@@ -133,7 +133,7 @@ footer .brand { display: block; margin-bottom: 1.2rem; }
 footer nav { display: flex; gap: 1.6rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0 1.6rem; }
 footer nav a { font-family: var(--font-caps); font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; }
 
-html.js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+html.js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .45s ease, transform .45s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 
