@@ -50,6 +50,54 @@
     </div>
   </section>
 
+  <!-- ACCOLADES — Rated Nº 2 top-rated salon, Google Reviews 2025 -->
+  <section class="section reveal" id="accolades">
+    <div class="wrap">
+      <span class="eyebrow">Accolades</span>
+      <div class="award">
+        <div class="award-medal" aria-hidden="true">
+          <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rated number 2 top-rated hair salon, Asheville — Google Reviews 2025">
+            <defs>
+              <path id="hwArcTop" d="M 27 130 A 103 103 0 0 1 233 130" fill="none"/>
+              <path id="hwArcBot" d="M 32 130 A 98 98 0 0 0 228 130" fill="none"/>
+              <g id="hwLaurelL" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M 78 188 Q 46 164 40 120" />
+                <path fill="currentColor" stroke="none" d="M0 0 Q5 -7 0 -16 Q-5 -7 0 0" transform="translate(72,182) rotate(-128)"/>
+                <path fill="currentColor" stroke="none" d="M0 0 Q5 -7 0 -16 Q-5 -7 0 0" transform="translate(60,172) rotate(-115)"/>
+                <path fill="currentColor" stroke="none" d="M0 0 Q5 -7 0 -16 Q-5 -7 0 0" transform="translate(50,159) rotate(-100)"/>
+                <path fill="currentColor" stroke="none" d="M0 0 Q5 -7 0 -16 Q-5 -7 0 0" transform="translate(44,145) rotate(-86)"/>
+                <path fill="currentColor" stroke="none" d="M0 0 Q5 -7 0 -16 Q-5 -7 0 0" transform="translate(41,131) rotate(-72)"/>
+              </g>
+            </defs>
+            <circle cx="130" cy="130" r="122" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/>
+            <circle class="medal-dash" cx="130" cy="130" r="114" fill="none" stroke="currentColor" stroke-width=".75" stroke-dasharray="2 6" opacity=".5"/>
+            <circle cx="130" cy="130" r="88" fill="none" stroke="currentColor" stroke-width="1.2"/>
+            <text class="medal-arc" font-size="11" letter-spacing="2.6"><textPath href="#hwArcTop" startOffset="50%" text-anchor="middle">TOP-RATED HAIR SALON</textPath></text>
+            <text class="medal-arc" font-size="9.5" letter-spacing="2.2"><textPath href="#hwArcBot" startOffset="50%" text-anchor="middle">ASHEVILLE · NORTH CAROLINA</textPath></text>
+            <text class="medal-txt" x="130" y="96" font-size="11" letter-spacing="4.5" text-anchor="middle">RATED</text>
+            <text class="medal-num" x="130" y="155" font-size="54" letter-spacing="2" text-anchor="middle">Nº 2</text>
+            <text class="medal-txt" x="130" y="176" font-size="11" letter-spacing="3" text-anchor="middle">★ ★ ★ ★ ★</text>
+            <text class="medal-txt" x="130" y="194" font-size="8.5" letter-spacing="1.8" text-anchor="middle">GOOGLE REVIEWS · 2025</text>
+            <use href="#hwLaurelL"/>
+            <use href="#hwLaurelL" transform="translate(260 0) scale(-1 1)"/>
+          </svg>
+        </div>
+        <h2>Rated № 2</h2>
+        <p class="award-sub">Top-Rated Hair Salon — Asheville, North Carolina</p>
+        <p class="award-src">As ranked by Google Reviews · 2025</p>
+        <div class="award-stats">
+          <div><span class="stat-n" data-count="17">0</span><span class="stat-l">Years at the Chair</span></div>
+          <div><span class="stat-n" data-count="4.9" data-dec="1">0</span><span class="stat-l">Google Rating</span></div>
+          <div><span class="stat-n" data-count="500" data-plus>0</span><span class="stat-l">Transformations</span></div>
+        </div>
+        <p class="award-quote">&ldquo;Theresa makes magic &mdash; more than just a haircut.&rdquo;</p>
+        <span class="award-attr">— Google Review</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule rule-gold">
+
   <!-- PORTFOLIO — her complete archive (same catalog as Option C) -->
   <section class="section reveal" id="work">
     <div class="wrap wide">
@@ -165,5 +213,32 @@
 <script src="js/config.js"></script>
 <script src="js/shared-photos.js"></script>
 <script src="js/shared.js"></script>
+<script>
+/* Accolades stat count-up */
+(function () {
+  var els = document.querySelectorAll(".stat-n");
+  if (!els.length) return;
+  var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function finish(el, target, dec, plus) { el.textContent = target.toFixed(dec) + (plus ? "+" : ""); }
+  function animate(el) {
+    var target = parseFloat(el.getAttribute("data-count")),
+        dec = +(el.getAttribute("data-dec") || 0),
+        plus = el.hasAttribute("data-plus"), t0 = null, dur = 1600;
+    if (reduced || !window.requestAnimationFrame) return finish(el, target, dec, plus);
+    requestAnimationFrame(function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1); p = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * p).toFixed(dec) + (plus ? "+" : "");
+      if (p < 1) requestAnimationFrame(step); else finish(el, target, dec, plus);
+    });
+  }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    els.forEach(function (el) { io.observe(el); });
+  } else { els.forEach(animate); }
+})();
+</script>
 </body>
 </html>

@@ -136,3 +136,29 @@ footer nav a { font-family: var(--font-caps); font-size: 0.65rem; letter-spacing
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* ---- Accolades: Nº 2 medallion + stats ---- */
+.award { text-align: center; }
+.award-medal { width: min(240px, 64vw); margin: 1.8rem auto 2.2rem; color: var(--gold); }
+.award-medal svg {
+  width: 100%; height: auto; display: block; overflow: visible;
+  animation: hwGlow 7s ease-in-out infinite;
+}
+.award-medal text { font-family: var(--font-caps); fill: currentColor; font-weight: 300; }
+.award-medal .medal-num { font-weight: 400; }
+.award-medal .medal-dash { animation: hwDash 60s linear infinite; }
+@keyframes hwGlow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(207,168,94,.14)); }
+  50%      { filter: drop-shadow(0 0 22px rgba(207,168,94,.4)); }
+}
+@keyframes hwDash { to { stroke-dashoffset: -640; } }
+.award-sub { font-family: var(--font-caps); letter-spacing: .3em; text-transform: uppercase; color: var(--silver); font-size: .88rem; margin: .4rem 0 0; }
+.award-src { font-family: var(--font-caps); font-size: .68rem; letter-spacing: .38em; text-transform: uppercase; color: var(--gold); margin-top: .55rem; }
+.award-stats { display: flex; justify-content: center; gap: 3.6rem; margin: 2.8rem 0 2.4rem; flex-wrap: wrap; }
+.award-stats .stat-n { display: block; font-family: var(--font-caps); font-weight: 200; font-size: 2.7rem; color: var(--gold); letter-spacing: .06em; min-width: 3.2ch; }
+.award-stats .stat-l { display: block; font-family: var(--font-caps); font-size: .64rem; letter-spacing: .34em; text-transform: uppercase; color: var(--silver-dim); margin-top: .4rem; }
+.award-quote { font-style: italic; color: var(--silver); max-width: 42ch; margin: 0 auto; font-size: 1.08rem; }
+.award-attr { display: block; font-family: var(--font-caps); font-size: .64rem; letter-spacing: .3em; text-transform: uppercase; color: var(--silver-dim); margin-top: .7rem; }
+@media (prefers-reduced-motion: reduce) {
+  .award-medal svg, .award-medal .medal-dash { animation: none; }
+}
